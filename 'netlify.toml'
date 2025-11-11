@@ -1,5 +1,5 @@
 # Configuration Netlify pour Dialyse-Infos.com
-# Dernière modification : 10 novembre 2024 - Force rebuild avec Motion
+# Dernière modification : 11 novembre 2024 - Force rebuild avec Motion
 
 [build]
   # Commande de build (React/Vite)
@@ -43,5 +43,7 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+
 # Configuration du domaine personnalisé
 # dialyse-infos.com et www.dialyse-infos.com
+

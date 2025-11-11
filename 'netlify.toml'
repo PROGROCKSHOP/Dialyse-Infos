@@ -1,13 +1,47 @@
-```toml
-[build]
-  command = "npm run build"
-  publish = "dist"
+# Configuration Netlify pour Dialyse-Infos.com
+# Dernière modification : 10 novembre 2024 - Force rebuild avec Motion
 
+[build]
+  # Commande de build (React/Vite)
+  command = "npm run build"
+  
+  # Dossier de sortie
+  publish = "dist"
+  
+  # Variables d'environnement
+  environment = { NODE_VERSION = "18" }
+
+# Servir les fichiers SEO
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
+
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+
+# Redirections pour SPA (Single Page Application)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-[build.environment]
-  NODE_VERSION = "18"
-```
+# Headers de sécurité
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache pour les assets statiques
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Configuration du domaine personnalisé
+# dialyse-infos.com et www.dialyse-infos.com
